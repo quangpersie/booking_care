@@ -155,8 +155,8 @@ let deleteUser = (userId) => {
 let updateUser = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if(!data.id) {
-                resolve({
+            if(!data.id || !data.roleId || !data.positionId || !data.gender) {
+                return resolve({
                     errCode: 2,
                     errMessage: 'Missing required parameter'
                 })
@@ -167,23 +167,27 @@ let updateUser = (data) => {
             })
 
             if (user) {
-                user.firstName = data.firstName,
-                user.lastName = data.lastName,
+                user.firstName = data.firstName
+                user.lastName = data.lastName
                 user.address = data.address
+                user.roleId = data.roleId
+                user.positionId = data.positionId
+                user.gender = data.gender
+                user.phoneNumber = data.phoneNumber
                 await user.save();
 
-                resolve({
+                return resolve({
                     errCode: 0,
                     errMessage: 'Update the user success'
                 });
             } else {
-                resolve({
+                return resolve({
                     errCode: 1,
                     errMessage: `User's not found`
                 });
             }
         } catch (e) {
-            reject(e);
+            return reject(e);
         }
     })
 }

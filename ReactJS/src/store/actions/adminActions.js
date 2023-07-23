@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes';
-import {getAllCode, createNewUserService, getAllUserService, deleteUserService} from '../../services/userService';
+import {getAllCode, createNewUserService, getAllUserService, deleteUserService, editUserService} from '../../services/userService';
 import { toast } from 'react-toastify';
 
 /* export const fetchGenderStart = () => {
@@ -160,4 +160,35 @@ export const deleteUserSuccess = () => ({
 
 export const deleteUserFailed = () => ({
     type: actionTypes.DELETE_USER_FAILED
+})
+
+export const editAUser = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editUserService(data);
+            console.log('>>data edit:', data);
+            console.log('>>res edit:', res);
+            if(res && res.errCode === 0) {
+                toast.success("Edit the user successfully !")
+                dispatch(editUserSuccess())
+                dispatch(fetchAllUsersStart())
+            } else {
+                toast.error("Edit the user failed !")
+                dispatch(editUserFailed())
+            }
+        } catch(e) {
+            toast.error("Edit the user error !")
+            dispatch(editUserFailed())
+        }
+    }
+}
+
+//2 function below haven't used Redux until needing to update something else (except edit user executing)
+
+export const editUserSuccess = () => ({
+    type: actionTypes.EDIT_USER_SUCCESS
+})
+
+export const editUserFailed = () => ({
+    type: actionTypes.EDIT_USER_FAILED
 })

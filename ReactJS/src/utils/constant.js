@@ -17,6 +17,12 @@ export const manageActions = {
     DELETE: "DELETE"
 };
 
+export const CRUD_ACTIONS = {
+    CREATE: 'CREATE',
+    EDIT: 'EDIT',
+    DELETE: 'DELETE'
+}
+
 export const dateFormat = {
     SEND_TO_SERVER: 'DD/MM/YYYY'
 };
