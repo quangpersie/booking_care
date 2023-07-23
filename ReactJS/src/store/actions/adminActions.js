@@ -90,10 +90,13 @@ export const createNewUser = (data) => {
             if(res && res.errCode === 0) {
                 toast.success("Create a new user successfully !")
                 dispatch(saveUserSuccess())
+                dispatch(fetchAllUsersStart())
             } else {
+                toast.error(`${res.errMessage} !`)
                 dispatch(saveUserFailed())
             }
         } catch (e) {
+            toast.error("Create new user error !")
             dispatch(saveUserFailed())
             console.log('saveUserFailed error', e);
         }
