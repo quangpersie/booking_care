@@ -18,7 +18,7 @@ let getTopDoctorHome = (limitInput) => {
                 nest: true
             })
     
-            console.log('doctors service:', users);
+            // console.log('doctors service:', users);
     
             resolve({
                 errCode: 0,
