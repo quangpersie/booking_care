@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.belongsTo(models.AllCode, { foreignKey: 'positionId', targetKey: 'keymap', as: 'positionData' })
       User.belongsTo(models.AllCode, { foreignKey: 'gender', targetKey: 'keymap', as: 'genderData' })
+      User.hasOne(models.Markdown, { foreignKey: "doctorId" })
     }
   };
   User.init({
