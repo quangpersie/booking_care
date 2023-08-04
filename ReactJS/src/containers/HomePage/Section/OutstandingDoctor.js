@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Slider from 'react-slick'
 import * as actions from '../../../store/actions'
 import { languages } from '../../../utils'
+import { withRouter } from 'react-router';
 
 class OutstandingDoctor extends Component {
     constructor(props) {
@@ -24,6 +25,13 @@ class OutstandingDoctor extends Component {
     componentDidMount() {
         this.props.loadTopDoctors()
         console.log('oustanding check:', this.state.arrDoctors);
+    }
+
+    handleViewDetailDoctor = (doctor) => {
+        console.log('view info:', doctor);
+        if(this.props.history) {
+            this.props.history.push(`detail-doctor/${doctor.id}`)
+        }
     }
 
     render() {
@@ -51,7 +59,7 @@ class OutstandingDoctor extends Component {
                                     let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`
                                     let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`
                                     return (
-                                        <div className='section-customize' key={index}>
+                                        <div className='section-customize' key={index} onClick={() => this.handleViewDetailDoctor(item)}>
                                             <div className='customize-border'>
                                                 <div className='outer-bg'>
                                                     <div className='bg-image section-outstanding-doctor'
@@ -89,4 +97,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor));
