@@ -25,7 +25,7 @@ const editUserService = (inputData) => {
     return axios.put('/api/edit-user', inputData)
 }
 
-const getAllCode = (inputType) => {
+const getAllCodeService = (inputType) => {
     return axios.get(`/api/allcode?type=${inputType}`)
 }
 
@@ -45,9 +45,13 @@ const getDetailInfoDoctor = (inputId) => {
     return axios.get(`/api/get-detail-doctor-by-id?id=${inputId}`)
 }
 
+const saveBulkScheduleDoctor = (data) => {
+    return axios.post('/api/bulk-create-schedule', data)
+}
+
 export {
     handleLoginApi, getAllUserService, createNewUserService, 
-    deleteUserService, editUserService, getAllCode, 
+    deleteUserService, editUserService, getAllCodeService, 
     getTopDoctorHomeService, getAllDoctorsService, saveDetailDoctorService,
-    getDetailInfoDoctor
+    getDetailInfoDoctor, saveBulkScheduleDoctor
 }

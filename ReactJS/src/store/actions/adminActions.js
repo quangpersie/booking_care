@@ -1,6 +1,6 @@
 import actionTypes from './actionTypes';
 import {
-    getAllCode, createNewUserService, 
+    getAllCodeService, createNewUserService, 
     getAllUserService, deleteUserService, 
     editUserService, getTopDoctorHomeService, 
     getAllDoctorsService, saveDetailDoctorService
@@ -15,7 +15,7 @@ export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
         // dispatch({type: actionTypes.FETCH_GENDER_START})
         try {
-            let res = await getAllCode('GENDER');
+            let res = await getAllCodeService('GENDER');
             if(res && res.errCode === 0) {
                 dispatch(fetchGenderSuccess(res.data))
             } else {
@@ -40,7 +40,7 @@ export const fetchGenderFailed = () => ({
 export const fetchPositionStart = () => {
     return async (dispatch, getState) => {
         try {
-            let res = await getAllCode('POSITION');
+            let res = await getAllCodeService('POSITION');
             if(res && res.errCode === 0) {
                 dispatch(fetchPositionSuccess(res.data))
             } else {
@@ -65,7 +65,7 @@ export const fetchPositionFailed = () => ({
 export const fetchRoleStart = () => {
     return async (dispatch, getState) => {
         try {
-            let res = await getAllCode('ROLE');
+            let res = await getAllCodeService('ROLE');
             if(res && res.errCode === 0) {
                 dispatch(fetchRoleSuccess(res.data))
             } else {
@@ -271,6 +271,29 @@ export const saveDetailDoctor = (data) => {
             console.log('SAVE_DETAIL_DOCTOR_FAILED error:', e);
             dispatch({
                 type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED
+            })
+        }
+    }
+}
+
+export const fetchAllScheduleTime = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeService("TIME")
+            if(res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+                    dataTime: res.data
+                })
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED
+                })
+            }
+        } catch(e) {
+            console.log('FETCH_ALLCODE_SCHEDULE_TIME_FAILED error:', e);
+            dispatch({
+                type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED
             })
         }
     }
