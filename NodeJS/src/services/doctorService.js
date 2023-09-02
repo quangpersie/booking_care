@@ -167,12 +167,6 @@ let bulkCreateSchedule = (data) => {
                     raw: true
                 })
 
-                console.log('existing:', existing);
-                console.log('inputs:', schedule);
-                console.log('differ:', toCreate);
-
-
-        
                 /* //convert date
                 if(existing && existing.length > 0) {
                     existing = existing.map(item => {
