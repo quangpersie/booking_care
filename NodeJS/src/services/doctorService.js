@@ -155,6 +155,17 @@ let getDetailDoctorById = (inputId) => {
                             model: db.AllCode,
                             as: 'positionData',
                             attributes: ['valueEn', 'valueVi']
+                        },
+                        {
+                            model: db.Doctor_Info,
+                            attributes: {
+                                exclude: ['id', 'doctorId']
+                            },
+                            include: [
+                                { model: db.AllCode, as: 'priceTypeData', attributes: ['valueEn', 'valueVi'] },
+                                { model: db.AllCode, as: 'provinceTypeData', attributes: ['valueEn', 'valueVi'] },
+                                { model: db.AllCode, as: 'paymentTypeData', attributes: ['valueEn', 'valueVi'] }
+                            ]
                         }
                     ],
                     raw: false,
@@ -264,6 +275,43 @@ let getScheduleByDate = (doctorId, date) => {
     })
 }
 
+let getExtraInfoDoctorById = (idInput) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if(!idInput) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing required parameters'
+                })
+            } else {
+                let data = await db.Doctor_Info.findOne({
+                    where: {
+                        doctorId: +idInput
+                    },
+                    attributes: {
+                        exclude: ['id', 'doctorId']
+                    },
+                    include: [
+                        { model: db.AllCode, as: 'priceTypeData', attributes: ['valueEn', 'valueVi'] },
+                        { model: db.AllCode, as: 'provinceTypeData', attributes: ['valueEn', 'valueVi'] },
+                        { model: db.AllCode, as: 'paymentTypeData', attributes: ['valueEn', 'valueVi'] }
+                    ],
+                    raw: false,
+                    nest: true
+                })
+
+                if(!data) data = []
+                resolve({
+                    errCode: 0,
+                    data: data
+                })
+            }
+        } catch(e) {
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
     getTopDoctorHome: getTopDoctorHome,
     getAllDoctors: getAllDoctors,
@@ -271,4 +319,5 @@ module.exports = {
     getDetailDoctorById: getDetailDoctorById,
     bulkCreateSchedule: bulkCreateSchedule,
     getScheduleByDate: getScheduleByDate,
+    getExtraInfoDoctorById: getExtraInfoDoctorById,
 }
