@@ -8,7 +8,7 @@ import MdEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css'
 import './ManageDoctor.scss'
 import Select from 'react-select'
-import { languages, CRUD_ACTIONS } from '../../../utils'
+import { LANGUAGES, CRUD_ACTIONS } from '../../../utils'
 import { getDetailInfoDoctor } from '../../../services/userService'
 
 const options = [
@@ -57,7 +57,7 @@ class ManageDoctor extends Component {
                     let object = {}
                     let labelVi = `${item.lastName} ${item.firstName}`
                     let labelEn = `${item.firstName} ${item.lastName}`
-                    object.label = this.props.language === languages.VI ? labelVi : labelEn
+                    object.label = this.props.language === LANGUAGES.VI ? labelVi : labelEn
                     object.value = item.id
                     result.push(object)
                 })
@@ -67,7 +67,7 @@ class ManageDoctor extends Component {
                     let object = {}
                     let labelVi = `${item.valueVi}`
                     let labelEn = `${item.valueEn} USD`
-                    object.label = this.props.language === languages.VI ? labelVi : labelEn
+                    object.label = this.props.language === LANGUAGES.VI ? labelVi : labelEn
                     object.value = item.keymap
                     result.push(object)
                 })
@@ -77,7 +77,7 @@ class ManageDoctor extends Component {
                     let object = {}
                     let labelVi = `${item.valueVi}`
                     let labelEn = `${item.valueEn}`
-                    object.label = this.props.language === languages.VI ? labelVi : labelEn
+                    object.label = this.props.language === LANGUAGES.VI ? labelVi : labelEn
                     object.value = item.keymap
                     result.push(object)
                 })

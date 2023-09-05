@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { languages, CRUD_ACTIONS, CommonUtils } from '../../../utils';
+import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from '../../../utils';
 import * as actions from '../../../store/actions'
 import './UserRedux.scss'
 import LightBox from 'react-image-lightbox'
@@ -274,7 +274,7 @@ class UserRedux extends Component {
                                         genders.map((item, index) => {
                                             return (
                                                 <option key={index} value={item.keymap}>
-                                                    {language === languages.VI ? item.valueVi : item.valueEn}
+                                                    {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                 </option>
                                             )
                                         })
@@ -288,7 +288,7 @@ class UserRedux extends Component {
                                         positions.map((item, index) => {
                                             return (
                                                 <option key={index} value={item.keymap}>
-                                                    {language === languages.VI ? item.valueVi : item.valueEn}
+                                                    {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                 </option>
                                             )
                                         })
@@ -302,7 +302,7 @@ class UserRedux extends Component {
                                         roles.map((item, index) => {
                                             return (
                                                 <option key={index} value={item.keymap}>
-                                                    {language === languages.VI ? item.valueVi : item.valueEn}
+                                                    {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                 </option>
                                             )
                                         })

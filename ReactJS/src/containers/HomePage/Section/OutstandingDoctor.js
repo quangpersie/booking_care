@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import Slider from 'react-slick'
 import * as actions from '../../../store/actions'
-import { languages } from '../../../utils'
+import { LANGUAGES } from '../../../utils'
 import { withRouter } from 'react-router';
 
 class OutstandingDoctor extends Component {
@@ -67,7 +67,7 @@ class OutstandingDoctor extends Component {
                                                     ></div>
                                                 </div>
                                                 <div className='position text-center'>
-                                                    <div>{language === languages.VI ? nameVi : nameEn}</div>
+                                                    <div>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
                                                     <div>{item.address}</div>
                                                 </div>
                                             </div>

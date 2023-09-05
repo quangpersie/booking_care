@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import HomeHeader from '../../HomePage/HomeHeader'
 import './DetailDoctor.scss'
 import { getDetailInfoDoctor } from '../../../services/userService'
-import { languages } from '../../../utils'
+import { LANGUAGES } from '../../../utils'
 import DoctorSchedule from './DoctorSchedule'
 import DoctorExtraInfo from './DoctorExtraInfo'
 
@@ -24,6 +24,7 @@ class DetailDoctor extends Component {
             })
             console.log('id detail doctor:', id);
             let res = await getDetailInfoDoctor(id)
+            console.log('>>res:::::::', res);
             if (res && res.errCode === 0) {
                 this.setState({
                     detailDoctor: res.data
@@ -56,7 +57,7 @@ class DetailDoctor extends Component {
                         <div className='content-left' style={{ backgroundImage: `url(${detailDoctor && detailDoctor.image ? detailDoctor.image : ''})` }}></div>
                         <div className='content-right'>
                             <div className='up'>
-                                {language === languages.VI ? nameVi : nameEn}
+                                {language === LANGUAGES.VI ? nameVi : nameEn}
                             </div>
                             <div className='down'>
                                 {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.description &&

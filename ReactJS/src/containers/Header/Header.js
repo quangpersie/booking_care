@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from "../../store/actions";
 import Navigator from '../../components/Navigator';
 import './Header.scss';
-import {languages, USER_ROLE} from "../../utils"
+import {LANGUAGES, USER_ROLE} from "../../utils"
 import {changeLanguageApp} from '../../store/actions'
 import { FormattedMessage } from 'react-intl';
 import {adminMenu, doctorMenu} from './menuApp'
@@ -53,8 +53,8 @@ class Header extends Component {
                 {/* nút logout */}
                 <div className='languages'>
                     <div className='msg_welcome'><FormattedMessage id={'home-header.welcome'}/>, {userInfo && userInfo.firstName ? userInfo.firstName : ''}!</div>
-                    <div className={language === languages.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(languages.VI)}>VN</span></div>
-                    <div className={language === languages.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(languages.EN)}>EN</span></div>
+                    <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span></div>
+                    <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
                     <div className="btn btn-logout" onClick={processLogout} title='Log out'>
                         <i className="fas fa-sign-out-alt"></i>
                     </div>

@@ -7,12 +7,12 @@ export const path = {
     DETAIL_DOCTOR: '/detail-doctor/:id'
 };
 
-export const languages = {
+export const LANGUAGES = {
     VI: 'vi',
     EN: 'en'
 };
  
-export const manageActions = {
+export const MANAGEACTIONS = {
     ADD: "ADD",
     EDIT: "EDIT",
     DELETE: "DELETE"
@@ -24,11 +24,11 @@ export const CRUD_ACTIONS = {
     DELETE: 'DELETE'
 }
 
-export const dateFormat = {
+export const DATEFORMAT = {
     SEND_TO_SERVER: 'DD/MM/YYYY'
 };
 
-export const YesNoObj = {
+export const YESNOOBJ = {
     YES: 'Y',
     NO: 'N'
 }

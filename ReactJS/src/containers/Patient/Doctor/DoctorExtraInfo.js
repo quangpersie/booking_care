@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './DoctorExtraInfo.scss'
-import { languages } from '../../../utils'
+import { LANGUAGES } from '../../../utils'
 import { getScheduleDoctorByDate } from '../../../services/userService'
 import { FormattedMessage } from 'react-intl'
 import NumberFormat from 'react-number-format'
@@ -62,7 +62,7 @@ class DoctorExtraInfo extends Component {
                     {isShowDetailInfo === false &&
                         <div className='short-info'>
                             <FormattedMessage id="patient.extra-info-doctor.price" />
-                            {extraInfo && extraInfo.priceTypeData && language === languages.VI &&
+                            {extraInfo && extraInfo.priceTypeData && language === LANGUAGES.VI &&
                                 <NumberFormat
                                     className='currency'
                                     value={extraInfo.priceTypeData.valueVi}
@@ -70,7 +70,7 @@ class DoctorExtraInfo extends Component {
                                     thousandSeparator={true}
                                     suffix={'VND'}
                                 />}
-                            {extraInfo && extraInfo.priceTypeData && language === languages.EN &&
+                            {extraInfo && extraInfo.priceTypeData && language === LANGUAGES.EN &&
                                 <NumberFormat
                                     className='currency'
                                     value={extraInfo.priceTypeData.valueEn}
@@ -95,7 +95,7 @@ class DoctorExtraInfo extends Component {
                                         <FormattedMessage id="patient.extra-info-doctor.price" />
                                     </span>
                                     <span className='right'>
-                                        {extraInfo && extraInfo.priceTypeData && language === languages.VI &&
+                                        {extraInfo && extraInfo.priceTypeData && language === LANGUAGES.VI &&
                                             <NumberFormat
                                                 className='currency'
                                                 value={extraInfo.priceTypeData.valueVi}
@@ -103,7 +103,7 @@ class DoctorExtraInfo extends Component {
                                                 thousandSeparator={true}
                                                 suffix={'VND'}
                                             />}
-                                        {extraInfo && extraInfo.priceTypeData && language === languages.EN &&
+                                        {extraInfo && extraInfo.priceTypeData && language === LANGUAGES.EN &&
                                             <NumberFormat
                                                 className='currency'
                                                 value={extraInfo.priceTypeData.valueEn}
@@ -120,9 +120,9 @@ class DoctorExtraInfo extends Component {
                             <div className='payment'>
                                 <FormattedMessage id="patient.extra-info-doctor.payment" />
 
-                                {extraInfo && extraInfo.paymentTypeData && language === languages.VI ?
+                                {extraInfo && extraInfo.paymentTypeData && language === LANGUAGES.VI ?
                                 extraInfo.paymentTypeData.valueVi : ''}
-                                {extraInfo && extraInfo.paymentTypeData && language === languages.EN ?
+                                {extraInfo && extraInfo.paymentTypeData && language === LANGUAGES.EN ?
                                 extraInfo.paymentTypeData.valueEn : ''}
 
                             </div>

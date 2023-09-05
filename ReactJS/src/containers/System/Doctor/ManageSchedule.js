@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './ManageSchedule.scss'
-import {FormattedMessage} from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import Select from 'react-select'
 import * as actions from "../../../store/actions"
-import {languages, dateFormat} from "../../../utils"
+import { LANGUAGES, DATEFORMAT } from "../../../utils"
 import DatePicker from "../../../components/Input/DatePicker"
 import { toast } from 'react-toastify'
 import _ from 'lodash'
 import moment from 'moment'
-import {saveBulkScheduleDoctor} from '../../../services/userService'
+import { saveBulkScheduleDoctor, getRangtimeByDoctorAndDate } from '../../../services/userService'
 
 class ManageSchedule extends Component {
     constructor(props) {
@@ -18,7 +18,8 @@ class ManageSchedule extends Component {
             listDoctors: [],
             selectedDoctor: {},
             currentDate: '',
-            rangeTime: []
+            rangeTime: [],
+            rangeTimeForSelect: []
         }
     }
 
@@ -54,7 +55,7 @@ class ManageSchedule extends Component {
                 let object = {}
                 let labelVi = `${item.lastName} ${item.firstName}`
                 let labelEn = `${item.firstName} ${item.lastName}`
-                object.label = this.props.language === languages.VI ? labelVi : labelEn
+                object.label = this.props.language === LANGUAGES.VI ? labelVi : labelEn
                 object.value = item.id
                 result.push(object)
             })
@@ -63,12 +64,30 @@ class ManageSchedule extends Component {
     }
 
     handleChangeSelect = async (selectedOption) => {
+        this.state.rangeTime.map(x => x.isSelected = false)
+        if(this.state.currentDate) {
+            let data = await getRangtimeByDoctorAndDate(+selectedOption.value, this.state.currentDate.getTime())
+            console.log('hehe check', data);
+        }
         this.setState({
             selectedDoctor: selectedOption
         })
     }
 
-    handleOnChangeDatePicker = (date) => {
+    handleOnChangeDatePicker = async (date) => {
+        this.state.rangeTime.map(x => x.isSelected = false)
+        if(this.state.selectedDoctor) {
+            let data = await getRangtimeByDoctorAndDate(+this.state.selectedDoctor.value, date[0].getTime())
+            console.log('hehe check data.data:', data.data);
+            let all = data.data.map(x => x.timeType)
+            let rs = this.state.rangeTime.map(x => {
+                if(all.includes(x.keymap)) {
+                    x.isSelected = true
+                }
+                return x
+            });
+            console.log('data update:', rs);
+        }
         this.setState({
             currentDate: date[0]
         })
@@ -93,16 +112,16 @@ class ManageSchedule extends Component {
         let {rangeTime, selectedDoctor, currentDate} = this.state
         let result = []
 
-        if(!currentDate) {
-            toast.error("Invalid date !")
-            return
-        }
         if(selectedDoctor && _.isEmpty(selectedDoctor)) {
             toast.error("Invalid selected doctor !")
             return
         }
+        if(!currentDate) {
+            toast.error("Invalid date !")
+            return
+        }
 
-        // let formattedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER)
+        // let formattedDate = moment(currentDate).format(DATEFORMAT.SEND_TO_SERVER)
 
         let formattedDate = new Date(currentDate).getTime()
 
@@ -178,7 +197,7 @@ class ManageSchedule extends Component {
                                             key={index}
                                             onClick={() => this.handleClickBtnTime(item)}
                                         >
-                                            {language === languages.VI ? item.valueVi : item.valueEn}
+                                            {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                         </button>
                                     )
                                 })

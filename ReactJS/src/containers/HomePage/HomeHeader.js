@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './HomeHeader.scss'
 import logo from '../../assets/images/logo.svg'
 import { FormattedMessage } from 'react-intl';
-import { languages } from "../../utils"
+import { LANGUAGES } from "../../utils"
 import { changeLanguageApp } from '../../store/actions'
 import { withRouter } from 'react-router'
 
@@ -51,8 +51,8 @@ class HomeHeader extends Component {
                         </div>
                         <div className='right-content'>
                             <div className='support'><i className='fas fa-question-circle'></i><FormattedMessage id='home-header.support' /></div>
-                            <div className={language === languages.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(languages.VI)}>VN</span></div>
-                            <div className={language === languages.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(languages.EN)}>EN</span></div>
+                            <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span></div>
+                            <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
                         </div>
                     </div>
                 </div>
