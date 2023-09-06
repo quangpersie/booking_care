@@ -61,6 +61,7 @@ class BookingModal extends Component {
         }
         if(this.props.dataTime !== prevProps.dataTime) {
             if(this.props.dataTime && !_.isEmpty(this.props.dataTime)) {
+                console.log('///check check check:', this.props.dataTime);
                 let doctorId = this.props.dataTime.doctorId
                 let timeType = this.props.dataTime.timeType
                 this.setState({
@@ -113,9 +114,9 @@ class BookingModal extends Component {
         let { language } = this.props
         if(dataTime && !_.isEmpty(dataTime)) {
             let name = language === LANGUAGES.VI ?
-            `${dataTime.doctorData.lastName} ${dataTime.doctorxData.firstName}`
+            `${dataTime.doctorData.lastName} ${dataTime.doctorData.firstName}`
             :
-            `${dataTime.doctorData.firstName} ${dataTime.doctorxData.lastName}`
+            `${dataTime.doctorData.firstName} ${dataTime.doctorData.lastName}`
             return name
         }
         return ''

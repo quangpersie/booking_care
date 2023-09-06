@@ -13,13 +13,6 @@ let sendEmail = async (dataSend) => {
         }
     })
 
-    let info = await transporter.sendMail({
-        from: '"Booking Care Center 🏥" <tdq1711@gmail.com>',
-        to: dataSend.receiverEmail,
-        subject: "Thông tin đặt lịch khám bệnh",
-        html: getBodyHTMLEmail(dataSend)
-    })
-
     let getBodyHTMLEmail = (dataSend) => {
         let result = ''
         if (dataSend.language === 'vi') {
@@ -31,12 +24,12 @@ let sendEmail = async (dataSend) => {
             <p><b>Bác sĩ: ${dataSend.doctorName}</b></p>
             <p>Nếu các thông tin trên là chính xác, vui lòng click vào đường link bên dưới để xác nhận và hoàn tất thủ tục đặt lịch khám bệnh</p>
             <div>
-                <a href=${dataSend.redirectLink} target="_blank>Click here</a>
+                <a href=${dataSend.redirectLink} target="_blank">Click here</a>
             </div>
             <div>Xin chân thành cảm ơn</div>
             `
         }
-        if (dataSend.language === 'vi') {
+        if (dataSend.language === 'en') {
             result = `
             <h3>Dear ${dataSend.patientName} !</h3>
              <p>You received this email because you booked an online medical appointment on the Booking Care website system</p>
@@ -45,7 +38,7 @@ let sendEmail = async (dataSend) => {
              <p><b>Doctor: ${dataSend.doctorName}</b></p>
              <p>If the above information is correct, please click on the link below to confirm and complete the appointment booking procedure</p>
              <div>
-                 <a href=${dataSend.redirectLink} target="_blank>Click here</a>
+                <a href=${dataSend.redirectLink} target="_blank">Click here</a>
              </div>
              <div>Sincerely thanks !</div>
             `
@@ -53,6 +46,13 @@ let sendEmail = async (dataSend) => {
 
         return result
     }
+
+    await transporter.sendMail({
+        from: '"Booking Care Center 🏥" <tdq1711@gmail.com>',
+        to: dataSend.receiverEmail,
+        subject: "Thông tin đặt lịch khám bệnh",
+        html: getBodyHTMLEmail(dataSend)
+    })
 }
 
 module.exports = {

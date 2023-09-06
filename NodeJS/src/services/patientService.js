@@ -65,6 +65,7 @@ let postBookAppointment = data => {
 }
 
 let postVerifyBookAppointment = (data) => {
+    // console.log(data);
     return new Promise(async (resolve, reject) => {
         try {
             if(!data.token || !data.doctorId) {
@@ -81,6 +82,7 @@ let postVerifyBookAppointment = (data) => {
                     },
                     raw: false
                 })
+                console.log('appointment:', appointment);
 
                 if(appointment) {
                     appointment.statusId = 'S2'
