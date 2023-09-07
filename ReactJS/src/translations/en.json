@@ -69,7 +69,8 @@
     },
     "homepage": {
         "outstanding-doctor": "Last week's featured doctor",
-        "more-info": "More info"
+        "more-info": "More info",
+        "specialty-popular": "Popular specialty"
     },
     "manage-schedule": {
         "title": "Manage doctor's examination plan",
@@ -118,7 +119,9 @@
             "province": "Province",
             "nameClinic": "Clinic's name",
             "addressClinic": "Clinic's address",
-            "note": "Note"
+            "note": "Note",
+            "specialty": "Choose specialty",
+            "select-clinic": "Choose clinic"
         }
     }
 }
