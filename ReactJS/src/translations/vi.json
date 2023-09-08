@@ -107,6 +107,11 @@
             "price": "Giá khám: "
         }
     },
+    "specialty": {
+        "detail-specialty": {
+            "no-data": "Không có dữ liệu cho tỉnh thành đang chọn"
+        }
+    },
     "admin": {
         "manage-doctor": {
             "title": "Tạo thêm thông tin bác sĩ",

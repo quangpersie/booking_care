@@ -82,7 +82,6 @@ const getAllSpecialty = () => {
 }
 
 const getAllDetailSpecialtyById = (data) => {
-    console.log('-------------data:', data);
     return axios.get(`/api/get-detail-specialty-by-id?id=${data.id}&location=${data.location}`)
 }
 

@@ -107,6 +107,11 @@
             "price": "Price: "
         }
     },
+    "specialty": {
+        "detail-specialty": {
+            "no-data": "No data for current province selection"
+        }
+    },
     "admin": {
         "manage-doctor": {
             "title": "Create more information for doctor",

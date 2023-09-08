@@ -29,7 +29,6 @@ class ProfileDoctor extends Component {
         if (id) {
             let res = await getProfileDoctorById(id)
             
-            console.log('check data now:::', res.data);
             if (res && res.errCode === 0) {
                 result = res.data
             }
@@ -71,7 +70,6 @@ class ProfileDoctor extends Component {
 
     render() {
         let { dataProfile } = this.state
-        console.log('dataProfile:::', dataProfile);
         let { language, isShowDescriptionDoctor, dataTime,
             isShowPrice, isShowLinkDetail, doctorId} = this.props
         let nameVi = '', nameEn = ''
@@ -107,7 +105,7 @@ class ProfileDoctor extends Component {
 
                 {isShowLinkDetail === true && 
                 <div className='view-detail-doctor'>
-                    <Link to={`/detail-doctor/${doctorId}`}></Link>
+                    <Link to={`/detail-doctor/${doctorId}`}>Xem them</Link>
                 </div>}
 
                 {isShowPrice === true &&

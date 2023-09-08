@@ -39,7 +39,6 @@ class DetailSpecialty extends Component {
                             arrDoctorId.push(item.doctorId)
                         })
                     }
-                    console.log('arrDoctorId', arrDoctorId);
 
                     let dataProvince = resProvince.data
                     if(dataProvince && dataProvince.length > 0) {
@@ -103,11 +102,9 @@ class DetailSpecialty extends Component {
         let { language } = this.props
 
         return (
-            <div className='detail-specilaty-container'>
+            <div className='detail-specialty-container'>
                 <HomeHeader />
                 <div style={{height: '70px'}}></div>
-
-                <div>test test</div>
 
                 <div className='detail-specialty-body'>
                     <div className='description-specialty'>
@@ -120,7 +117,7 @@ class DetailSpecialty extends Component {
                             {listProvince && listProvince.length > 0 &&
                             listProvince.map((item, index) => {
                                 return (
-                                    <option>
+                                    <option key={index} value={item.keymap}>
                                         {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                     </option>
                                 )
@@ -153,6 +150,10 @@ class DetailSpecialty extends Component {
                             </div>
                         )
                     })}
+
+                    {!arrDoctorId || arrDoctorId.length === 0 &&
+                        <div className='no-data'><FormattedMessage id="specialty.detail-specialty.no-data" /></div>
+                    }
                 </div>
             </div>
         )

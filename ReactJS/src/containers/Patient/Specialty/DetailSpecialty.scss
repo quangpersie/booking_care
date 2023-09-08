@@ -27,6 +27,7 @@
         background: #eee;
         display: flex;
         flex-direction: column;
+        height: 100vh;
     }
 
     .each-doctor {
@@ -35,7 +36,7 @@
         min-height: 300px;
         margin: 15px 0;
         padding: 10px;
-        background-color: #fff;
+        background-color: #fff !important;
         box-shadow: 0 1px 6px #20212447;
         border-radius: 8px;
 
@@ -70,5 +71,13 @@
                 }
             }
         }
+    }
+
+    .no-data {
+        text-align: center;
+        font-size: 17;
+        font-weight: bold;
+        margin-top: 60px;
+        color: red;
     }
 }
