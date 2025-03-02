@@ -26,7 +26,9 @@ let handleUserLogin = (email, password) => {
                     attributes: ['email', 'roleId', 'password', 'firstName', 'lastName']
                 })
                 if(user) {
-                    let check = bcrypt.compareSync(password, user.password)
+                    let test = await bcrypt.hashSync("quangquang", salt);
+                    console.log(test)
+                    let check = await bcrypt.compareSync(password, user.password)
                     if(check) {
                         userData.errCode = 0;
                         userData.errMessage = 'Ok';
